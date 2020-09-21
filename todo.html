@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    
+    <title>Harrys web app</title>
+    
+    <meta charset="utf-8">    
+    
+    <link rel="stylesheet" href="mystyle1.css">
+    
+    <style>@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');</style>
+    
+</head>
+    
+<body>
+
+<div class="grid">
+  <!-- 100% wide -->
+</div>
+
+    
+<h1>To do list</h1>    
+    
+<!---------------------------------------- GRIDS ------------------------------------->
+
+    
+ 
+
+<!---------------------------------------- END GRIDS -------------------------------------->  
+    
+<!-- TO DO LIST FROM https://www.w3schools.com/howto/howto_js_todolist.asp -->
+    <div id="myDIV" class="header">
+  <input type="text" id="myInput" placeholder="Title...">
+  <span onclick="newElement()" class="addBtn">Add</span>
+</div>
+
+<ul id="myUL">
+  <li>Practice coding more often</li>
+  <li class="checked">Sort out hosting</li>
+  <li>Learn PHP</li>
+  <li>Figure out how to use bloody CPanel</li>
+  <li class="checked">Keep trying</li>
+  <li>Refresh Javascript knowledge</li>
+  <li>Organize new house</li>
+</ul>
+<!-- END TRO DO LIST FROM https://www.w3schools.com/howto/howto_js_todolist.asp -->
+    
+    
+<!--------------------------------------START JS-------------------------------------->
+
+<script>
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}   
+</script>
+
+<!--------------------------------------START JS-------------------------------------->
+    
+
+    </body>
+</html>
